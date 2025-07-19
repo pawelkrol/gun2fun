@@ -2,6 +2,7 @@
 
 #include <boost/filesystem.hpp>
 #include <boost/program_options.hpp>
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <tuple>
@@ -17,8 +18,8 @@ void fail(std::string msg) {
 
 std::tuple<fs::path, fs::path> parse_args(int argc, char **argv) {
   po::options_description desc
-    ("\ngun2fun 1.0.0 - Gunpaint to Funpaint 2 IFLI file converter"
-     "\nCopyright (C) 2022-03-27 by Pawel Krol\n"
+    ("\ngun2fun 1.0.1 - Gunpaint to Funpaint 2 IFLI file converter"
+     "\nCopyright (C) 2025-07-19 by Pawel Krol\n"
      "\nUsage: <gun2fun> <input-file.gun> <output-file.fun>"
      "\nArguments");
 

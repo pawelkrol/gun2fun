@@ -8,7 +8,7 @@ It produces an unpacked [Funpaint 2](https://commodore.software/downloads/downlo
 
 ## Version
 
-Version 1.0.0 (2022-03-27)
+Version 1.0.1 (2025-07-19)
 
 ## Installation
 
@@ -28,6 +28,6 @@ Compile and run the program:
 
 ## Copyright and Licence
 
-Copyright (C) 2022 by Pawel Krol.
+Copyright (C) 2022-2025 by Pawel Krol.
 
 This software is distributed under the terms of the MIT license. See [LICENSE](https://github.com/pawelkrol/gun2fun/blob/master/LICENSE.md) for more information.
