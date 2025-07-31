@@ -4,17 +4,17 @@
 
 It accepts a [Gunpaint](https://commodore.software/downloads/download/43-hi-res-graphics-editors/15394-gunpaint) file on the input.
 
-It produces an unpacked [Funpaint 2](https://commodore.software/downloads/download/43-hi-res-graphics-editors/15476-funpaint-ii) file on the output.
+It produces an unpacked or an RLE-packed [Funpaint 2](https://commodore.software/downloads/download/43-hi-res-graphics-editors/15476-funpaint-ii) file on the output.
 
 ## Version
 
-Version 1.0.1 (2025-07-19)
+Version 1.1.0 (2025-08-02)
 
 ## Installation
 
 Install prerequisite libraries:
 
-    $ sudo dnf install boost-devel
+    $ sudo dnf install boost-devel doctest-devel
 
 Clone the repository:
 
@@ -23,8 +23,9 @@ Clone the repository:
 Compile and run the program:
 
     $ cd gun2fun
-    $ make
-    $ ./gun2fun <input-file.gun> <output-file.fun>
+    $ make -j16
+    $ make check
+    $ ./gun2fun [--packed] <input-file.gun> <output-file.fun>
 
 ## Copyright and Licence
 

@@ -16,15 +16,16 @@ void fail(std::string msg) {
   exit(1);
 }
 
-std::tuple<fs::path, fs::path> parse_args(int argc, char **argv) {
+std::tuple<fs::path, fs::path, bool> parse_args(int argc, char **argv) {
   po::options_description desc
-    ("\ngun2fun 1.0.1 - Gunpaint to Funpaint 2 IFLI file converter"
-     "\nCopyright (C) 2025-07-19 by Pawel Krol\n"
-     "\nUsage: <gun2fun> <input-file.gun> <output-file.fun>"
+    ("\ngun2fun 1.1.0 - Gunpaint to Funpaint 2 IFLI file converter"
+     "\nCopyright (C) 2025-08-02 by Pawel Krol\n"
+     "\nUsage: <gun2fun> [--packed] <input-file.gun> <output-file.fun>"
      "\nArguments");
 
   desc.add_options()
     ("help", "produce help message")
+    ("packed", "(optional) enable RLE picture packer")
     ("gunpaint-input-file", po::value<std::string>()->required(), "input file (Gunpaint IFLI picture)")
     ("funpaint-output-file", po::value<std::string>()->required(), "output file (Funpaint 2 IFLI picture)");
 
@@ -67,7 +68,9 @@ std::tuple<fs::path, fs::path> parse_args(int argc, char **argv) {
     exit(1);
   }
 
-  return std::make_tuple(in, out);
+  bool packed = vm.count("packed") > 0;
+
+  return std::make_tuple(in, out, packed);
 }
 
 std::vector<char> read_file(fs::path file) {

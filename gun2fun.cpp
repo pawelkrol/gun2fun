@@ -1,28 +1,14 @@
 #include "gun2fun.h"
 
 #include "fileutils.h"
+#include "funpaint.h"
+#include "memory.h"
 
+#include <algorithm>
+#include <cstdint>
 #include <iostream>
+#include <optional>
 #include <string>
-
-namespace {
-
-template <uint16_t load_address>
-uint16_t data_offset(uint16_t memory_address) {
-  return memory_address - load_address + 0x0002;
-}
-
-uint16_t funpaint_data_offset(uint16_t memory_address) {
-  static constexpr uint16_t load_address = 0x3ff0;
-  return data_offset<load_address>(memory_address);
-}
-
-uint16_t gunpaint_data_offset(uint16_t memory_address) {
-  static constexpr uint16_t load_address = 0x4000;
-  return data_offset<load_address>(memory_address);
-}
-
-}  // anonymous namesapce
 
 void validate_input(const std::vector<char>& gunpaint) {
   // Load address: 0x4000
@@ -44,12 +30,10 @@ std::vector<char> convert_data(const std::vector<char>& gunpaint) {
   std::vector<char> data(size);
 
   // Load address: 0x3ff0
-  static const std::vector<char8_t> load_address = { 0xf0, 0x3f };
-  std::copy(load_address.begin(), load_address.end(), data.begin() + 0x0000);
+  append_load_address(data);
 
   // Header info: 0x3ff0..0x3fff ("funpaint (mt) ")
-  static const std::vector<char8_t> header_info = { 0x46, 0x55, 0x4e, 0x50, 0x41, 0x49, 0x4e, 0x54, 0x20, 0x28, 0x4d, 0x54, 0x29, 0x20, 0x00, 0x00 };
-  std::copy(header_info.begin(), header_info.end(), data.begin() + 0x0002);
+  append_header_info(data, std::nullopt);
 
   // Screen RAMs 1: 0x4000..0x5fe7
   std::copy(gunpaint.begin() + gunpaint_data_offset(0x4000), gunpaint.begin() + gunpaint_data_offset(0x5fe8), data.begin() + funpaint_data_offset(0x4000));
