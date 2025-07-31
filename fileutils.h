@@ -7,7 +7,7 @@
 
 void fail(std::string);
 
-std::tuple<boost::filesystem::path, boost::filesystem::path> parse_args(int, char **);
+std::tuple<boost::filesystem::path, boost::filesystem::path, bool> parse_args(int, char **);
 
 std::vector<char> read_file(boost::filesystem::path);
 

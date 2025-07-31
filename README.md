@@ -8,13 +8,13 @@ It produces an unpacked [Funpaint 2](https://commodore.software/downloads/downlo
 
 ## Version
 
-Version 1.0.1 (2025-07-19)
+Version 1.1.0 (2025-08-02)
 
 ## Installation
 
 Install prerequisite libraries:
 
-    $ sudo dnf install boost-devel
+    $ sudo dnf install boost-devel doctest-devel
 
 Clone the repository:
 
@@ -23,7 +23,8 @@ Clone the repository:
 Compile and run the program:
 
     $ cd gun2fun
-    $ make
+    $ make -j16
+    $ make check
     $ ./gun2fun <input-file.gun> <output-file.fun>
 
 ## Copyright and Licence
